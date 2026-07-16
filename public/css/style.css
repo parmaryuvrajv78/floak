@@ -1260,6 +1260,24 @@ body {
     padding: clamp(0.5rem, 2vw, 1.25rem);
 }
 
+.app-logo-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: var(--ink);
+    font-weight: 900;
+}
+
+.app-section-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    object-fit: contain;
+    background: white;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
+}
+
 .app-copy h2 {
     max-width: 720px;
     margin: 0 0 1rem;
@@ -2044,6 +2062,23 @@ body {
     background: var(--surface-soft);
 }
 
+.download-app-info {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.download-app-logo,
+.admin-app-logo {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 auto;
+    border-radius: 10px;
+    object-fit: contain;
+    background: white;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
 .download-badge {
     display: inline-flex;
     width: fit-content;
@@ -2237,6 +2272,17 @@ body {
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface-soft);
+}
+
+.admin-app-info {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: 0.85rem;
+}
+
+.admin-app-info > div {
+    min-width: 0;
 }
 
 .admin-app-row h3,

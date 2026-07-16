@@ -39,9 +39,12 @@
 
         listEl.innerHTML = apps.map((app) => `
             <article class="admin-app-row">
-                <div>
+                <div class="admin-app-info">
+                    <img class="admin-app-logo" src="/icon.png" alt="" aria-hidden="true">
+                    <div>
                     <h3>${app.title}</h3>
                     <p>${app.fileName} · ${formatBytes(app.size)} · ${new Date(app.updatedAt).toLocaleString()}</p>
+                    </div>
                 </div>
                 <div class="admin-row-actions">
                     <a href="${app.url}" download>Download</a>

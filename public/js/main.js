@@ -1,6 +1,6 @@
 // main.js | floak Website - Production Ready v2.1
-// Complete vanilla JS: Loader, Mobile Menu, Smooth Scroll, Animations, Header Effects, AI Chat + GAME SUPPORT
-// Bug-fixed: Chat toggle + Study/Game card navigation | 2026 Production
+// Complete vanilla JS: Loader, Mobile Menu, Smooth Scroll, Animations, Header Effects + GAME SUPPORT
+// Bug-fixed: Study/Game card navigation | 2026 Production
 
 (function() {
     'use strict';
@@ -47,7 +47,7 @@
             }
         ],
         ROADMAP: [
-            'AI assistant improvements',
+            'Study workflow improvements',
             'Android app releases',
             'Progress analytics'
         ],
@@ -56,10 +56,10 @@
                 label: 'Today',
                 title: 'Physics revision sprint',
                 progress: 76,
-                note: 'AI summary, notes, and practice tasks ready.',
-                miniLabel: 'AI',
-                miniTitle: 'Doubt resolved',
-                miniNote: "Explain Kirchhoff's law with a diagram.",
+                note: 'Notes, revision cards, and practice tasks ready.',
+                miniLabel: 'Notes',
+                miniTitle: 'Topic ready',
+                miniNote: "Kirchhoff's law revision card saved.",
                 tasks: '4 tasks',
                 due: 'Before 8:30 PM',
                 prompt: 'Build a 30-minute study plan for tomorrow.'
@@ -97,11 +97,8 @@
             loader: document.getElementById('loader'),
             mobileMenu: document.getElementById('mobileMenu'),
             navLinks: document.querySelector('.nav-links'),
-            aiChat: document.getElementById('aiChat'),
-            aiToggle: document.getElementById('aiToggle'),
             appDrawer: document.getElementById('appDrawer'),
-            appDrawerBackdrop: document.getElementById('appDrawerBackdrop'),
-            closeChat: document.querySelector('.close-chat')
+            appDrawerBackdrop: document.getElementById('appDrawerBackdrop')
         };
     }
 
@@ -202,23 +199,6 @@
         sections.forEach((section) => observer.observe(section));
     }
 
-    // 🔧 CHAT TOGGLE (Fixed for your HTML onclick)
-    function toggleChat(open = null) {
-        const chat = document.getElementById('aiChat');
-        if (!chat) return;
-        
-        const isOpen = chat.classList.contains('active');
-        const shouldOpen = open === null ? !isOpen : open;
-        
-        if (shouldOpen) {
-            chat.classList.add('active');
-        } else {
-            chat.classList.remove('active');
-        }
-        
-        ELEMENTS.navLinks?.classList.remove('active');
-    }
-
     // 🎮 STUDY DASHBOARD CARD HANDLER
     function initStudyCard() {
         const cards = document.querySelectorAll('.feature-card.elevate');
@@ -281,9 +261,6 @@
         }
     }
 
-    // Global functions
-    window.toggleFloakAI = toggleChat;
-
     function toggleAppDrawer(open = null) {
         const drawer = document.getElementById('appDrawer');
         const backdrop = document.getElementById('appDrawerBackdrop');
@@ -316,7 +293,7 @@
         const list = document.getElementById('appDownloadList');
         if (!list) return;
 
-        setText('liveToolsCount', String(3 + apps.length));
+        setText('liveToolsCount', String(2 + apps.length));
 
         if (!apps.length) {
             list.innerHTML = '<p class="drawer-empty">No Android apps uploaded yet.</p>';
@@ -325,10 +302,13 @@
 
         list.innerHTML = apps.map((app) => `
             <article class="download-card">
-                <div>
-                    <span class="download-badge">APK</span>
-                    <h3>${app.title}</h3>
-                    <p>${formatBytes(app.size)} updated ${new Date(app.updatedAt).toLocaleDateString()}</p>
+                <div class="download-app-info">
+                    <img class="download-app-logo" src="/icon.png" alt="" aria-hidden="true">
+                    <div>
+                        <span class="download-badge">APK</span>
+                        <h3>${app.title}</h3>
+                        <p>${formatBytes(app.size)} updated ${new Date(app.updatedAt).toLocaleDateString()}</p>
+                    </div>
                 </div>
                 <a href="${app.url}" download>Download</a>
             </article>
@@ -422,15 +402,12 @@
         bindSmoothScroll();
         initScrollAnimations();
         bindHeaderScroll();
-        bindChatEvents();
         bindAppDrawerEvents();
         renderDynamicContactContent();
         initDynamicConsole();
         initActiveNavigation();
         initContactWorkflow();
         loadAppDownloads();
-        fixCloseButtons();
-        
         // 🎯 ACTIVATE FEATURE CARDS
         initStudyCard();
         initGameCard();
@@ -510,29 +487,6 @@
         });
     }
 
-    function bindChatEvents() {
-        const aiToggle = document.getElementById('aiToggle');
-        const heroAiToggle = document.getElementById('heroAiToggle');
-        if (document.body.dataset.chatEventsBound) return;
-        document.body.dataset.chatEventsBound = 'true';
-        aiToggle?.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleChat(true);
-        });
-        heroAiToggle?.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleChat(true);
-        });
-        document.addEventListener('click', (e) => {
-            const chat = document.getElementById('aiChat');
-            const toggle = document.getElementById('aiToggle');
-            const isChatOpen = chat?.classList.contains('active');
-            if (chat && !chat.contains(e.target) && toggle && !toggle.contains(e.target) && isChatOpen) {
-                toggleChat(false);
-            }
-        });
-    }
-
     function bindAppDrawerEvents() {
         if (document.body.dataset.appDrawerEventsBound) return;
         document.body.dataset.appDrawerEventsBound = 'true';
@@ -557,21 +511,6 @@
         });
     }
 
-    function fixCloseButtons() {
-        function makeCloseWork(btn) {
-            if (btn.dataset.closeBound) return;
-            btn.dataset.closeBound = 'true';
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                toggleChat(false);
-            });
-        }
-        const selectors = ['.close-chat', '.ai-close'];
-        selectors.forEach(selector => {
-            document.querySelectorAll(selector).forEach(makeCloseWork);
-        });
-    }
-
     // 🎬 DOM READY
     function onDomReady() {
         init();
@@ -580,11 +519,9 @@
             initStudyCard();
             initGameCard();
             bindMobileMenu();
-            bindChatEvents();
             bindAppDrawerEvents();
             initContactWorkflow();
             initActiveNavigation();
-            fixCloseButtons();
         });
         observer.observe(document.body, { childList: true, subtree: true });
     }
