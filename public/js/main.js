@@ -271,6 +271,7 @@
 
         drawer.classList.toggle('active', shouldOpen);
         backdrop.classList.toggle('active', shouldOpen);
+        document.body.classList.toggle('app-drawer-open', shouldOpen);
         drawer.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
         ELEMENTS.navLinks?.classList.remove('active');
 
