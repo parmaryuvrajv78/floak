@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>floak Admin - APK Uploads</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="admin-page">
+    <main class="admin-shell">
+        <header class="admin-header">
+            <div>
+                <a href="index.html" class="admin-back">Back to site</a>
+                <h1>APK Admin Panel</h1>
+                <p>Upload Android APK files and manage what appears in the app drawer.</p>
+            </div>
+            <form method="post" action="/admin-logout">
+                <button type="submit" class="btn-secondary">Logout</button>
+            </form>
+        </header>
+
+        <section class="admin-card">
+            <form id="apkUploadForm" class="admin-form">
+                <label>
+                    APK file
+                    <input type="file" id="apkFile" accept=".apk,application/vnd.android.package-archive" required>
+                </label>
+                <button type="submit" class="btn-primary">Upload APK</button>
+                <p class="admin-status" id="adminStatus">Choose an APK file to upload.</p>
+            </form>
+        </section>
+
+        <section class="admin-card">
+            <div class="admin-list-header">
+                <h2>Uploaded Apps</h2>
+                <button type="button" class="btn-secondary" id="refreshApps">Refresh</button>
+            </div>
+            <div class="admin-app-list" id="adminAppList">
+                <p>No APK files uploaded yet.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

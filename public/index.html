@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>floak - AI Learning Solutions</title>
+
+    <link rel="icon" type="image/png" href="/icon.png">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="floak">
+    <meta name="description" content="floak builds AI-powered learning tools, study workflows, and mobile education products for students.">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/tech-redesign.css">
+</head>
+
+<body>
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <img class="logo-spin" src="/icon.png" alt="" aria-hidden="true">
+            <p>Loading floak...</p>
+        </div>
+    </div>
+
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img class="logo-icon" src="/icon.png" alt="" aria-hidden="true">
+                <span class="logo-text">floak</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#products" class="nav-link">Products</a></li>
+                <li><a href="#my-app" class="nav-link">Apps</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="app-drawer-toggle" id="appDrawerToggle">Android Apps</button>
+            <button class="ai-toggle ai-assistant-nav" id="aiToggle" type="button" aria-label="Open floak AI Assistant">
+                <span class="ai-nav-icon" aria-hidden="true">AI</span>
+                <span>AI Assistant</span>
+            </button>
+            <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">Menu</button>
+        </nav>
+    </header>
+
+    <div id="aiChat" class="ai-chat">
+        <div class="chat-header">
+            <div class="chat-header-left">
+                <img class="chat-icon" src="/icon.png" alt="" aria-hidden="true">
+                <h3>floak AI Assistant</h3>
+            </div>
+            <button class="close-chat" type="button" aria-label="Close chat">x</button>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Ask floak AI... (Press Enter)">
+            <button id="sendBtn" aria-label="Send message">
+                Ask
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="drawer-backdrop" id="appDrawerBackdrop"></div>
+    <aside class="app-drawer" id="appDrawer" aria-label="Android app downloads" aria-hidden="true">
+        <div class="drawer-header">
+            <div>
+                <span class="drawer-kicker">Downloads</span>
+                <h2>Android Apps</h2>
+            </div>
+            <button class="drawer-close" id="appDrawerClose" aria-label="Close Android apps drawer">x</button>
+        </div>
+        <div class="drawer-list" id="appDownloadList">
+            <p class="drawer-empty">No Android apps uploaded yet.</p>
+        </div>
+        <p class="drawer-note">Use the admin panel to upload or remove APK files.</p>
+        <a class="drawer-admin-link" href="admin.html">Open admin panel</a>
+    </aside>
+
+    <main class="tech-main">
+        <section id="home" class="hero tech-hero">
+            <div class="hero-content tech-hero-grid">
+                <div class="hero-copy">
+                    <div class="hero-badge">Education technology company</div>
+                    <h1 class="hero-title">
+                        <span>AI learning solutions</span>
+                        <span>for focused students.</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        floak designs intelligent study tools, AI assistance, and mobile learning products that help students work with clarity and consistency.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#products" class="btn-primary btn-large">View Solutions</a>
+                        <button class="btn-secondary btn-large" id="heroAiToggle">Open AI Assistant</button>
+                    </div>
+                    <div class="hero-stats">
+                        <span><strong id="liveToolsCount">3</strong> live tools</span>
+                        <span><strong>2025</strong> founded</span>
+                        <span><strong id="learnerCount">10+</strong> learners</span>
+                    </div>
+                </div>
+                <div class="hero-console" aria-label="floak product preview">
+                    <div class="console-topbar">
+                        <span></span><span></span><span></span>
+                        <strong>floak.ai/session</strong>
+                    </div>
+                    <div class="console-grid">
+                        <div class="console-panel primary-panel">
+                            <span class="panel-label" id="consoleLabel">Today</span>
+                            <h3 id="consoleTitle">Physics revision sprint</h3>
+                            <div class="progress-track"><span id="consoleProgress" style="width: 76%"></span></div>
+                            <p id="consoleNote">AI summary, notes, and practice tasks ready.</p>
+                        </div>
+                        <div class="console-panel">
+                            <span class="panel-label" id="consoleMiniLabel">AI</span>
+                            <h4 id="consoleMiniTitle">Doubt resolved</h4>
+                            <p id="consoleMiniNote">Explain Kirchhoff's law with a diagram.</p>
+                        </div>
+                        <div class="console-panel">
+                            <span class="panel-label">Plan</span>
+                            <h4 id="consoleTaskCount">4 tasks</h4>
+                            <p id="consoleDueTime">Before 8:30 PM</p>
+                        </div>
+                    </div>
+                    <div class="console-command">
+                        <span>Ask</span>
+                        <p id="consolePrompt">Build a 30-minute study plan for tomorrow.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="section features-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Solutions</span>
+                    <h2 class="section-title">A practical learning platform built for everyday academic work.</h2>
+                    <p class="section-subtitle">Structured tools for notes, AI support, mobile access, and consistent study routines.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card study-card elevate">
+                        <div class="feature-icon">01</div>
+                        <h3>Study Dashboard</h3>
+                        <p>Organize notes, subjects, and saved progress in a focused student workspace.</p>
+                        <span class="card-action">Open notes</span>
+                    </div>
+                    <a class="feature-card floak-ai-card elevate" href="https://shniro-mpdf.onrender.com"
+                        target="_blank" rel="noopener noreferrer">
+                        <div class="feature-icon">02</div>
+                        <h3>floak AI</h3>
+                        <p>Use a dedicated AI workspace for document support, summaries, and clear explanations.</p>
+                        <span class="card-action">Open floak AI</span>
+                    </a>
+                    <div class="feature-card ai-card elevate">
+                        <div class="feature-icon">03</div>
+                        <h3>AI Assistant</h3>
+                        <p>Ask quick study questions from the website and continue working without context switching.</p>
+                        <span class="card-action">Ask floak</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="my-app" class="section app-section">
+            <div class="container">
+                <div class="app-shell">
+                    <div class="app-copy">
+                        <span class="section-kicker">Mobile products</span>
+                        <h2>Android learning tools managed from one secure website.</h2>
+                        <p>
+                            floak keeps app releases close to the platform, so students can access the newest
+                            Android learning tools from a simple download drawer.
+                        </p>
+                        <div class="app-actions">
+                            <button class="btn-secondary" id="appDrawerSectionToggle">Download Android Apps</button>
+                        </div>
+                    </div>
+                    <div class="app-preview" aria-label="floak app preview">
+                        <div class="app-screen clean-screen">
+                            <div class="app-pill">Live workspace</div>
+                            <h3>Study Dashboard</h3>
+                            <div class="app-progress"><span style="width: 72%"></span></div>
+                            <div class="app-list">
+                                <div>
+                                    <strong>Physics Notes</strong>
+                                    <span>12 chapters</span>
+                                </div>
+                                <div>
+                                    <strong>AI Doubt Help</strong>
+                                    <span>Ready now</span>
+                                </div>
+                                <div>
+                                    <strong>Practice Plan</strong>
+                                    <span>4 tasks left</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="phone-shadow-card">
+                            <strong>v1.0 APK</strong>
+                            <span>Managed from admin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="about-shell">
+                    <div class="about-copy">
+                        <span class="about-kicker">Company</span>
+                        <h2>Focused education technology for modern learners.</h2>
+                        <p>
+                            floak is an education technology company building simple, reliable study products. Our
+                            goal is to make learning workflows clearer, faster, and easier to use every day.
+                        </p>
+                        <div class="about-founder">
+                            <figure class="founder-photo">
+                                <img src="images/founder.jpg" alt="Yuvraj Parmar founder picture" loading="lazy" data-founder-photo>
+                                <span></span>
+                            </figure>
+                            <div>
+                                <h4>Yuvraj Parmar</h4>
+                                <p>Founder and Product Lead</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-panel">
+                        <div class="about-metric">
+                            <strong>2025</strong>
+                            <span>Founded</span>
+                        </div>
+                        <div class="about-metric">
+                            <strong>10+</strong>
+                            <span>Students reached</span>
+                        </div>
+                        <div class="about-metric wide">
+                            <strong>3</strong>
+                            <span>Learning products live</span>
+                        </div>
+                        <div class="about-note">
+                            <span></span>
+                            <p>Designed around focused workflows, quick access, and fewer distractions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Connect</span>
+                    <h2 class="section-title light-title">Partner with floak.</h2>
+                    <p class="section-subtitle light-subtitle">Contact us for feedback, product questions, collaborations, or platform support.</p>
+                </div>
+                <div class="contact-workflow">
+                    <div class="contact-intake elevate">
+                        <div class="contact-tabs" id="contactTabs" role="tablist" aria-label="Contact reason">
+                            <button class="contact-tab active" type="button" data-contact-topic="Feedback">Feedback</button>
+                            <button class="contact-tab" type="button" data-contact-topic="Collaboration">Collab</button>
+                            <button class="contact-tab" type="button" data-contact-topic="Support">Support</button>
+                        </div>
+                        <form class="contact-form" id="contactForm">
+                            <label>
+                                Your name
+                                <input type="text" id="contactName" name="name" placeholder="Yuvraj Parmar" required>
+                            </label>
+                            <label>
+                                Email
+                                <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required>
+                            </label>
+                            <label class="contact-message-field">
+                                Message
+                                <textarea id="contactMessage" name="message" rows="5" placeholder="Tell me what you want to build, fix, or improve." required></textarea>
+                            </label>
+                            <input type="hidden" id="contactTopic" value="Feedback">
+                            <button type="submit" class="btn-primary contact-submit">Prepare Email</button>
+                            <p class="contact-status" id="contactStatus" aria-live="polite">Selected: Feedback</p>
+                        </form>
+                    </div>
+                    <aside class="contact-side elevate" aria-label="Contact options">
+                        <div class="contact-route-card primary-route">
+                            <span>Direct line</span>
+                            <h3>floak Product Desk</h3>
+                            <a href="mailto:parmaryuvrajv78@gmail.com">parmaryuvrajv78@gmail.com</a>
+                        </div>
+                        <div class="contact-mini-grid">
+                            <a class="contact-mini-card" href="tel:+919316394850">
+                                <span>Call</span>
+                                <strong>+91 9316394850</strong>
+                            </a>
+                            <a class="contact-mini-card" href="https://github.com/parmaryuvrajv78/main-potfolio" target="_blank"
+                                rel="noopener noreferrer">
+                                <span>Code</span>
+                                <strong>GitHub</strong>
+                            </a>
+                        </div>
+                        <div class="contact-timeline" id="roadmapSignals">
+                            <h3>Roadmap Signals</h3>
+                            <div>
+                                <span></span>
+                                <p>AI assistant improvements</p>
+                            </div>
+                            <div>
+                                <span></span>
+                                <p>Android app releases</p>
+                            </div>
+                            <div>
+                                <span></span>
+                                <p>Progress analytics</p>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo footer-logo">
+                    <img class="logo-icon" src="/icon.png" alt="" aria-hidden="true">
+                    <span>floak 2026</span>
+                </div>
+                <p>AI learning solutions for students.</p>
+                <p>Designed with clarity, reliability, and focus.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script defer src="js/floak-ai.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/study-dashboard.js"></script>
+    <script defer src="js/game.js"></script>
+</body>
+
+</html>
